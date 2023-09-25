@@ -45,8 +45,14 @@ RUN . /opt/ros/noetic/setup.sh \
   && . /home/workspace/src/AGRARSENSE_ROS_Messages/ros2ws/install/setup.sh \
   && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure
 
-ENTRYPOINT ["/ros_entrypoint.sh"]
-
 WORKDIR "/home/workspace"
+
+RUN echo '#!/bin/bash' > start_rosbridge_server \
+  && echo 'source /opt/ros/noetic/setup.bash && roslaunch rosbridge_server rosbridge_tcp.launch bson_only_mode:=True' >> start_rosbridge_server \
+  && chmod +x start_rosbridge_server
+
+RUN echo '#!/bin/bash' > start_ros1_bridge \
+  && echo 'source /opt/ros/foxy/setup.bash && ros2 run ros1_bridge dynamic_bridge --bridge-all-topics' >> start_ros1_bridge \
+  && chmod +x start_ros1_bridge
 
 CMD /bin/bash
