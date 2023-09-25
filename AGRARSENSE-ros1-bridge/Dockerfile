@@ -18,6 +18,8 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6
     ros-foxy-launch* \
   && apt-get clean
 
+RUN apt-get install -y ros-noetic-rosauth ros-noetic-rosbridge-suite
+
 WORKDIR "/home/workspace/"
 RUN colcon build --symlink-install --packages-skip ros1_bridge
 
