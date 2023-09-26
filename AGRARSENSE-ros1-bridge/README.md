@@ -4,12 +4,12 @@ Internally it runs ROSBridge (ROS1) and ROS1_Bridge (ROS1 -> ROS2) including [cu
 
 1. Build docker container (requires docker installed, run in this directory):
 
-        docker build -t AGRARSENSE-ros1-bridge:latest .
+        docker build -t agrarsense-ros1-bridge:latest .
    
 2. Run ROSBridge server in one terminal
 
-        docker run -it --network host AGRARSENSE-ros1-bridge ./start_rosbridge_server
+        docker run -it --network host agrarsense-ros1-bridge ./start_rosbridge_server
 
 3. Run ROS1_Bridge in another terminal
 
-       docker run -it --network host AGRARSENSE-ros1-bridge ./start_ros1_bridge
+       docker run -it --network host agrarsense-ros1-bridge ./start_ros1_bridge
